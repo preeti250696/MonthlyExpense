@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{isLogin?'Login':'Signup '}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ <form [formGroup]="form">
+   <ion-grid>
+     <ion-row>
+       <ion-col size-sm="6" offset-sm="3">
+         <ion-list>
+           <ion-item>
+             <ion-label position="floating">Email</ion-label>
+             <ion-input type="email" formControlName="email"></ion-input>
+             </ion-item>
+             <ion-item lines="none" *ngIf="!form.get('email').valid && form.get('email').touched">
+               <p>Please fill valid email</p>
+             </ion-item>
+             <ion-item>
+               <ion-label position="floating">Password</ion-label>
+               <ion-input type="password" formControlName="password"></ion-input>
+               </ion-item>
+               <ion-item lines="none" *ngIf="!form.get('password').valid && form.get('password').touched">
+                 <p>Password should be of at least 6 characters</p>
+               </ion-item>
+           </ion-list>
+         </ion-col>
+       </ion-row>
+       <ion-row>
+         <ion-col size-sm="6" offset-sm="3">
+           <ion-button expand="block" fill="clear" (click)="switchAction()">Switch to {{isLogin? 'Signup' : 'Login'}}</ion-button>
+           <ion-button expand="block" (click)="authenticate()" [disabled]="!form.valid">{{isLogin ? 'Login':'Signup'}}</ion-button> 
+           </ion-col>
+         </ion-row>
+     </ion-grid>
+   </form>
+</ion-content>

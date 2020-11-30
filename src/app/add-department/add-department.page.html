@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/departments"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{departMent.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid>
+   <ion-row *ngIf="departMent">
+     <ion-col>
+   <ion-item lines="none"><ion-label>Manager Name: {{departMent.managerName}}</ion-label><span>${{departMent.dev *1000 + 300 + departMent.qa * 500}}</span><span class="ion-text-right"><ion-button (click)="showPrompt(departMent)"><ion-icon name="add"></ion-icon></ion-button></span></ion-item>
+   <ion-item lines="none"><ion-label>No. of Developers: {{departMent.dev}}</ion-label><span class="ion-text-right"><ion-button (click)="addDeveloper(departMent.id)"><ion-icon name="add"></ion-icon></ion-button></span></ion-item>
+   <ion-item lines="none"><ion-label>No. of QA Testeter: {{departMent.qa}}</ion-label><span class="ion-text-right"><ion-button (click)="addQA(departMent.id)"><ion-icon name="add"></ion-icon></ion-button></span></ion-item>
+     <ion-item lines="none"><ion-label>Managers: {{departMent.manager ? departMent.manager.length : 0}}</ion-label></ion-item>
+      <ion-list *ngIf="departMent.manager" >
+        <ion-item detail *ngFor="let manager of departMent.manager" (click)="showManager(manager.id)">
+         {{manager.name}}
+        </ion-item>
+        
+        </ion-list>
+
+  </ion-col>
+</ion-row>  
+<ion-card color="light">
+<ion-row *ngIf="selectedDepartMent">
+  <ion-col>
+  <ion-list >
+    <ion-item lines="none"><ion-label>Manager Name: {{selectedDepartMent.managerName}}</ion-label><span>${{selectedDepartMent.dev *1000 + 300 + selectedDepartMent.qa * 500}}</span><span class="ion-text-right"><ion-button (click)="showPrompt(selectedDepartMent)"><ion-icon name="add"></ion-icon></ion-button></span></ion-item>
+     <ion-item lines="none"><ion-label>No. of Developers: {{selectedDepartMent.dev}}</ion-label><span class="ion-text-right"><ion-button (click)="addDeveloper(selectedDepartMent.id)"><ion-icon name="add"></ion-icon></ion-button></span></ion-item>
+     <ion-item lines="none"><ion-label>No. of QA Testeter: {{selectedDepartMent.qa}}</ion-label><span class="ion-text-right"><ion-button (click)="addQA(selectedDepartMent.id)"><ion-icon name="add"></ion-icon></ion-button></span></ion-item>
+     <ion-item lines="none">
+      <ion-label>Managers:{{selectedDepartMent.manager?selectedDepartMent.manager.length:0}}</ion-label>
+   
+     </ion-item>
+     <ion-list *ngIf="selectedDepartMent.manager">
+      <ion-item detail *ngFor="let manager of selectedDepartMent.manager" (click)="showManager(manager.id)">
+       {{manager.name}}
+      </ion-item>
+      
+      </ion-list>
+  </ion-list>
+  </ion-col>
+  </ion-row> 
+  </ion-card>
+  </ion-grid>
+</ion-content>

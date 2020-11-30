@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>departments</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-button (click)="showPrompt()">Create Department</ion-button>
+<ion-list>
+  <ion-item detail *ngFor="let dept of uniqueDept" (click)="viewDept(dept.id)"><ion-label>{{dept.name}}</ion-label><span class="ion-text-center">${{dept.cost}}</span></ion-item>
+  </ion-list>
+</ion-content>
